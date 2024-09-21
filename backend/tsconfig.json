@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",         // Compiled JS files go to the 'dist' folder
+    "rootDir": "./",            // The root of your backend source code is the 'backend' folder
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["**/*.ts","express.d.ts"],       // Include all TypeScript files in the 'backend' folder and its subfolders
+  "exclude": ["node_modules", "dist"]  // Exclude unnecessary directories
+}
