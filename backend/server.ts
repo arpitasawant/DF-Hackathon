@@ -4,6 +4,7 @@ import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import roleRoutes from "./routes/roleRoutes"; 
 import userRoutes from "./routes/userRoutes";
+import cors from "cors";
 dotenv.config();
 
 const app: Application = express();
@@ -12,6 +13,9 @@ const app: Application = express();
 connectDB();
 
 // Middleware
+app.use(cors());
+
+
 app.use(express.json());
 
 // Routes
