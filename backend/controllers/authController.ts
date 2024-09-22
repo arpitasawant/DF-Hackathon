@@ -82,13 +82,9 @@ export const forgotPassword = async (req: Request, res: Response) => {
         return res.status(400).json({ msg: "User does not exist" });
       }
   
-      // Create a reset token (for simplicity, using user ID here; ideally, use JWT or similar)
-      const resetToken = jwt.sign({ userId: user.id }, jwtSecret, {
-        expiresIn: "1h", // Token valid for 1 hour
-      });
-  
+      
       // Create a reset link
-      const resetLink = `http://localhost:5000/api/reset-password/${resetToken}`;
+      const resetLink = `http://localhost:3000/forgot-password`;
   
       // Setup Nodemailer transporter
       const transporter = nodemailer.createTransport({
@@ -115,36 +111,46 @@ export const forgotPassword = async (req: Request, res: Response) => {
   };
   
   // Function to reset password
-  export const resetPassword = async (req: Request, res: Response) => {
-    const { token } = req.params;
-    const { newPassword, confirmPassword } = req.body;
   
-    if (newPassword !== confirmPassword) {
-      return res.status(400).json({ msg: "Passwords do not match" });
-    }
   
-    try {
-      const decoded = jwt.verify(token, jwtSecret) as { userId: string };
   
-      // Find the user by ID
-      const user = await User.findById(decoded.userId);
-      if (!user) {
-        return res.status(400).json({ msg: "User does not exist" });
-      }
+  // export const resetPassword = async (req: Request, res: Response) => {
+  //   const { newPassword, confirmPassword } = req.body;
   
-      // Hash the new password
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(newPassword, salt);
+  //   if (newPassword !== confirmPassword) {
+  //     return res.status(400).json({ msg: "Passwords do not match" });
+  //   }
   
-      // Update user's password
-      user.password = hashedPassword;
-      await user.save();
+  //   try {
+  //     // Check if req.user exists and has an _id
+  //     if (!req.user || !req.user._id) {
+  //       return res.status(401).json({ msg: "Unauthorized" });
+  //     }
   
-      res.json({ msg: "Password reset successful" });
-    } catch (error) {
-      res.status(500).send("Server error");
-    }
-  };
+  //     const userId = req.user._id; // Accessing the automatically generated _id
+  
+  //     // Find the user by ID
+  //     const user = await User.findById(userId);
+  //     if (!user) {
+  //       return res.status(400).json({ msg: "User does not exist" });
+  //     }
+  
+  //     // Hash the new password
+  //     const salt = await bcrypt.genSalt(10);
+  //     const hashedPassword = await bcrypt.hash(newPassword, salt);
+  
+  //     // Update user's password
+  //     user.password = hashedPassword;
+  //     await user.save();
+  
+  //     res.json({ msg: "Password reset successful" });
+  //   } catch (error) {
+  //     res.status(500).json({ msg: "Server error" });
+  //   }
+  // };
+  
+
+
 
   export const logout = async (req: Request, res: Response) => {
     try {

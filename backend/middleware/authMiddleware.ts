@@ -21,4 +21,4 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     res.status(401).json({ msg: "Token is not valid" });
   }
 };
-// vrushali.khedkar@digitalflake.com
+

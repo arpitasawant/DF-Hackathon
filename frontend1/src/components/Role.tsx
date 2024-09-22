@@ -1,12 +1,13 @@
 import React from 'react';
-import name from "../assets/name.png"
+import namelogo from "../assets/editlogo.png"
 const Role: React.FC = () => {
     return (
         <div className="flex h-screen">
             <aside className="w-1/5 bg-gray-50 border-r border-gray-200">
                 <div className="flex flex-col items-center py-6">
-                    <div className="bg-purple-700 p-4 rounded mb-8 w-64">
-                        <img src={name} alt="Logo" className="w-64 h-auto" />
+                <div className='bg-purple-700 flex items-center gap-24 h-12 w-48'>
+
+                        <img src={namelogo} alt="Logo" className="w-64 h-auto" />
                     </div>
                     <nav className="w-full">
                         <ul>
