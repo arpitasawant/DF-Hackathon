@@ -4,9 +4,9 @@ export interface IUser extends Document {
   name: string;
   mobile: string;
   email: string;
-  role: "Admin" | "Superadmin" | "Caller" | "Account"; // Role can be flexible
+  role: "Admin" | "Superadmin" | "Caller" | "Account"; 
   status: "active" | "inactive"; // Status
-  image?: string; // Image URL or path
+  image?: string; 
 }
 
 const userSchema = new Schema<IUser>({
@@ -15,10 +15,9 @@ const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   role: { type: String, enum: ["Admin", "Superadmin", "Caller", "Account"], required: true },
   status: { type: String, enum: ["active", "inactive"], required: true },
-  image: { type: String, required: false }, // Optional image field
+  image: { type: String, required: false }, 
 });
 
-// Specify the collection name here
 const createdUser = mongoose.model<IUser>("CreatedUsers", userSchema);
 
 export default createdUser;

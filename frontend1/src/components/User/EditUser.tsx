@@ -58,7 +58,7 @@ const EditUser: React.FC = () => {
         formDataToSend.append('image', formData.image);
       }
 
-      const response = await axios.post('https://your-api-url.com/create-user', formDataToSend, {
+      const response = await axios.post('https://localhost:5000/api/user/edit-user/:id', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
