@@ -16,7 +16,7 @@ const ForgotPassword: React.FC = () => {
         
         try {
             // Fetch token from localStorage
-            const token = localStorage.getItem('token'); // Adjust the key based on your application
+            const token = localStorage.getItem('token');
 
             const response = await fetch('http://localhost:5000/api/reset-password', {
                 method: 'POST',

@@ -8,10 +8,10 @@ import {
 } from "../controllers/userController";
 import multer from "multer";
 
-// Setup multer storage
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Folder to save uploaded images
+    cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
